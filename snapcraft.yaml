@@ -1,0 +1,29 @@
+name: sheepshaver # you probably want to 'snapcraft register <name>'
+base: core18 # the base snap is the execution environment for this snap
+version: '2.5.0' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Classic Macintosh emulator using PPC CPUs
+description: |
+  Classic Macintosh emulator using PPC CPUs
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+icon:  sheepshaver_icon.png
+title: SheepShaver
+
+apps:
+  sheepshaver:
+    command: SheepShaver-x86_64
+parts:
+  sheepshaver:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source: .
+#    build-packages: [default-jre]
+#    stage-packages: [default-jre]
+    organize:
+      sheepshaver: build/
+      sheepshaver.1: man/man1/
+
+architectures:
+  - build-on: amd64
+
